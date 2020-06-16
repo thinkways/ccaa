@@ -14,11 +14,11 @@ filebrowser_pid=$(pgrep 'filebrowser')
 #设置aria2密码
 function pass(){
 	sed -ir "s/rpc-secret=.*/rpc-secret=$PASS/g" /etc/ccaa/aria2.conf
-	sed -ir "s/rpc-secure=.*/rpc-secure=$RPC-SECURE_BOOLEAN/g" /etc/ccaa/aria2.conf
-	sed -ir "s/rpc-certificate=.*/rpc-certificate=$RPC_CERT_PATH/g" /etc/ccaa/aria2.conf
-	sed -ir "s/rpc-private-key=.*/rpc-private-key=$RPC_KEY_PATH/g" /etc/ccaa/aria2.conf
+	sed -ir "s/#rpc-secure=.*/rpc-secure=$RPC_SECURE_BOOLEAN/g" /etc/ccaa/aria2.conf
+	sed -ir "s/#rpc-certificate=.*/rpc-certificate=$RPC_CERT_PATH/g" /etc/ccaa/aria2.conf
+	sed -ir "s/#rpc-private-key=.*/rpc-private-key=$RPC_KEY_PATH/g" /etc/ccaa/aria2.conf
 	sed -ir "s/max-overall-upload-limit=.*/max-overall-upload-limit=$UPLOAD_LIMIT/g" /etc/ccaa/aria2.conf
-	sed -i "s/server_ip:6081/$FILEMANAGER_URL/g" /etc/ccaa/AriaNg/index.html
+	sed -i "s/server_ip:6081/$FILEMANAGER_URL/g" /etc/ccaa/index.html
 
 	if ! grep "on-download-stop=" /etc/ccaa/aria2.conf  >/dev/null
 	then
