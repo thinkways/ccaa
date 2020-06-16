@@ -15,8 +15,8 @@ filebrowser_pid=$(pgrep 'filebrowser')
 function pass(){
 	sed -ir "s/rpc-secret=.*/rpc-secret=$PASS/g" /etc/ccaa/aria2.conf
 	sed -ir "s@#rpc-secure=.*@rpc-secure=$RPC_SECURE_BOOLEAN@g" /etc/ccaa/aria2.conf
-	sed -ir "s@#rpc-certificate=.*@rpc-certificate=$RPC_CERT_PATH@g" /etc/ccaa/aria2.conf
-	sed -ir "s@#rpc-private-key=.*@rpc-private-key=$RPC_KEY_PATH@g" /etc/ccaa/aria2.conf
+	sed -ir "s@#rpc-certificate=.*@rpc-certificate=/etc/ccaa/cert.pem@g" /etc/ccaa/aria2.conf
+	sed -ir "s@#rpc-private-key=.*@rpc-private-key=/etc/ccaa/key.pem@g" /etc/ccaa/aria2.conf
 	sed -ir "s/max-overall-upload-limit=.*/max-overall-upload-limit=$UPLOAD_LIMIT/g" /etc/ccaa/aria2.conf
 	sed -i "s/server_ip:6081/$FILEMANAGER_URL/g" /etc/ccaa/index.html
 	mv /etc/ccaa/index.html /etc/ccaa/AriaNg/index.html
