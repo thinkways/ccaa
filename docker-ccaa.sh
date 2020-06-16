@@ -10,7 +10,7 @@ export PATH
 #各种路径设置
 aria2_url='https://github.com/q3aql/aria2-static-builds/releases/download/v1.35.0/aria2-1.35.0-linux-gnu-64bit-build1.tar.bz2'
 filebrowser_url='https://github.com/filebrowser/filebrowser/releases/download/v2.0.16/linux-amd64-filebrowser.tar.gz'
-master_url='https://github.com/helloxz/ccaa/archive/master.zip'
+master_url='https://github.com/thinkways/ccaa/archive/master.zip'
 ccaa_web_url='http://soft.xiaoz.org/linux/ccaa_web'
 
 #安装前的检查
@@ -93,17 +93,6 @@ function setting(){
 	mkdir -p ${downpath}
 	sed -i "s%dir=%dir=${downpath}%g" /etc/ccaa/aria2.conf
 	sed -ir "s/rpc-secret=.*/rpc-secret=$PASS/g" /etc/ccaa/aria2.conf
-	sed -ir "s/rpc-secure=.*/rpc-secure=$RPC-SECURE_BOOLEAN/g" /etc/ccaa/aria2.conf
-	sed -ir "s/rpc-certificate=.*/rpc-certificate=$RPC_CERT_PATH/g" /etc/ccaa/aria2.conf
-	sed -ir "s/rpc-private-key=.*/rpc-private-key=$RPC_KEY_PATH/g" /etc/ccaa/aria2.conf
-	sed -ir "s/max-overall-upload-limit=.*/max-overall-upload-limit=$UPLOAD_LIMIT/g" /etc/ccaa/aria2.conf
-	
-	if ! grep "on-download-stop=" /etc/ccaa/aria2.conf  >/dev/null
-	then
-   		sed '1i'"on-download-stop="'' /etc/ccaa/aria2.conf > newfile
-   		mv newfile /etc/ccaa/aria2.conf
-	fi
-	sed -ir "s/on-download-stop=.*/on-download-stop=$DONE_BASH_FILE/g" /etc/ccaa/aria2.conf
 
 	#替换filebrowser读取路径
 	sed -i "s%ccaaDown%${downpath}%g" /etc/ccaa/config.json
@@ -111,7 +100,6 @@ function setting(){
 	#sed -i "s/server_ip/${osip}/g" /etc/ccaa/AriaNg/index.html
 	rm -rf /etc/ccaa/AriaNg/index.html
 	mv /etc/ccaa/AriaNg/dindex.html /etc/ccaa/AriaNg/index.html
-	sed -i "s/server_ip:6081/$FILEMANAGER_URL/g" /etc/ccaa/AriaNg/index.html
 	#更新tracker
 	sh /etc/ccaa/upbt.sh
 	
