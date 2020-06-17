@@ -32,7 +32,7 @@ function check(){
 #安装之前的准备
 function setout(){
 	#安装需要的软件
-	apk add curl wget zip tar make bzip2 unzip
+	apk add curl wget zip tar make bzip2 unzip grep
 	#创建临时目录
 	cd
 	mkdir ./ccaa_tmp
