@@ -9,9 +9,7 @@ export PATH
 
 #各种路径设置
 #aria2_url='https://github.com/q3aql/aria2-static-builds/releases/download/v1.35.0/aria2-1.35.0-linux-gnu-64bit-build1.tar.bz2'
-aria2_url=$(curl -s https://api.github.com/repos/q3aql/aria2-static-builds/releases/latest | grep browser_download_url | grep 'linux.*64.*tar.bz2' | head -n 1 | cut -d '"' -f 4)
 #filebrowser_url='https://github.com/filebrowser/filebrowser/releases/latest/download/linux-amd64-filebrowser.tar.gz'
-filebrowser_url=$(curl -s https://api.github.com/repos/filebrowser/filebrowser/releases/latest | grep browser_download_url | grep 'linux.*amd64.*tar.gz' | head -n 1 | cut -d '"' -f 4)
 master_url='https://github.com/thinkways/ccaa/archive/master.zip'
 ccaa_web_url='http://soft.xiaoz.org/linux/ccaa_web'
 
@@ -44,6 +42,8 @@ function install_aria2(){
 	cd ./ccaa_tmp
 	#yum -y update
 	#安装aria2静态编译版本，来源于https://github.com/q3aql/aria2-static-builds/
+	aria2_url=$(curl -s https://api.github.com/repos/q3aql/aria2-static-builds/releases/latest | grep browser_download_url | grep 'linux.*64.*tar.bz2' | head -n 1 | cut -d '"' -f 4)
+
 	wget -c ${aria2_url}
 	tar jxvf aria2*.tar.bz2
 	rm aria2*.tar.bz2
@@ -56,6 +56,8 @@ function install_aria2(){
 function install_file_browser(){
 	cd ./ccaa_tmp
 	#下载File Browser
+	filebrowser_url=$(curl -s https://api.github.com/repos/filebrowser/filebrowser/releases/latest | grep browser_download_url | grep 'linux.*amd64.*tar.gz' | head -n 1 | cut -d '"' -f 4)
+
 	wget ${filebrowser_url}
 	#解压
 	tar -zxvf linux-amd64-filebrowser.tar.gz
