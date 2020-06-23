@@ -5,5 +5,6 @@ WORKDIR /root
 RUN wget https://raw.githubusercontent.com/thinkways/ccaa/master/docker-ccaa.sh && sh docker-ccaa.sh install
 VOLUME /data/ccaaDown
 
-CMD ["crond", "-f"]
+USER root
+CMD crond
 EXPOSE 6080 6081 6800 51413
