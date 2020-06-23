@@ -24,4 +24,4 @@ function up_tracker(){
 up_tracker
 
 #重启服务
-/usr/sbin/ccaa restart
+/usr/sbin/dccaa restart
